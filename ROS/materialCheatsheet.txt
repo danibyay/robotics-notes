@@ -1,0 +1,25 @@
+
+
+    A standard URDF can specify colors using a tag such as in the RRBot:
+
+    <material name="orange"/>
+
+    With the color orange defined separately such as in the file materials.xacro:
+
+    <material name="orange">
+      <color rgba="${255/255} ${108/255} ${10/255} 1.0"/>
+    </material>
+
+    Unfortunately, this method of specifying link colors does not work in Gazebo as it adopts OGRE's material scripts for coloring and texturing links. Instead, a Gazebo material tag must be specified for each link, such as:
+
+    <gazebo reference="link1">
+      <material>Gazebo/Orange</material>
+    </gazebo>
+
+These <gazebo reference=...> tags allow to embed native SDF commands for model links into URDF.
+
+So, you should include in your URDF something like:
+
+<gazebo reference="base_link">
+  <material>Gazebo/Yellow</material>
+</gazebo>
